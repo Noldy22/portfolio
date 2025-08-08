@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anold Stephen Minja | Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Base class for elements to be animated */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        /* Class to make elements visible and trigger the transition */
+        .fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* New CSS for active navigation link highlight */
+        .active-link {
+            color: #2dd4bf; /* A vibrant teal color */
+            font-weight: 700; /* Bolder font */
+            text-decoration: underline;
+            text-underline-offset: 8px; /* Adds space between text and underline */
+            text-decoration-thickness: 2px;
+            text-decoration-color: #14b8a6; /* A slightly darker teal for the underline */
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200">
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-50 bg-gray-900 bg-opacity-90 backdrop-blur-md shadow-lg">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold text-teal-400 hover:text-teal-300 transition-colors duration-300">Noldy22</a>
+            <div class="space-x-8 hidden md:flex" id="main-nav-links">
+                <!-- Added IDs for easier JavaScript selection -->
+                <a href="#about" id="nav-about" class="nav-link text-lg hover:text-teal-400 transition-colors duration-300">About</a>
+                <a href="#skills" id="nav-skills" class="nav-link text-lg hover:text-teal-400 transition-colors duration-300">Skills</a>
+                <a href="#projects" id="nav-projects" class="nav-link text-lg hover:text-teal-400 transition-colors duration-300">Projects</a>
+                <a href="#contact" id="nav-contact" class="nav-link text-lg hover:text-teal-400 transition-colors duration-300">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6">
+
+        <!-- Hero Section -->
+        <section id="home" class="min-h-screen flex items-center justify-center text-center">
+            <div class="max-w-4xl fade-in" style="transition-delay: 0.2s;">
+                <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight">
+                    Hello, I'm <span class="text-teal-400">Anold Stephen Minja</span>
+                </h1>
+                <p class="mt-4 text-xl md:text-2xl text-gray-400 font-medium">
+                    A Pharmacy Student, Web Developer, and Forex Trader from Dar es Salaam, Tanzania.
+                </p>
+                <a href="#contact" class="mt-8 inline-block bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105">
+                    Let's Connect
+                </a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 md:py-32">
+            <div class="bg-gray-800 p-8 md:p-12 rounded-3xl shadow-xl border-t-4 border-teal-500 fade-in">
+                <h2 class="text-4xl font-bold text-white mb-6">About Me</h2>
+                <!-- Profile photo -->
+                <img src="me.jpg" alt="Anold Stephen Minja" class="w-48 h-48 rounded-full object-cover mb-6 md:float-right md:ml-8">
+                <p class="text-lg text-gray-300 leading-relaxed">
+                    Hello, I'm Anold Stephen Minja, a dedicated pharmacy student from Dar es Salaam, Tanzania, set to graduate in 2026. Beyond my academic pursuits, I am an ambitious individual with a diverse skill set in technology, finance, and creative arts. My personal and professional projects are a testament to my commitment to continuous learning and building valuable solutions.
+                </p>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 md:py-32">
+            <h2 class="text-4xl font-bold text-white text-center mb-12 fade-in">My Expertise</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Skill Card 1 -->
+                <div class="bg-gray-800 p-8 rounded-3xl shadow-lg border border-gray-700 hover:border-teal-500 transition-all duration-300 transform hover:scale-105 fade-in">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <span class="text-4xl text-teal-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+                        </span>
+                        <h3 class="text-2xl font-semibold text-white">Forex Trading & Business</h3>
+                    </div>
+                    <ul class="list-disc list-inside space-y-2 text-gray-300">
+                        <li>Forex Market Analysis: Proficient in technical and fundamental analysis.</li>
+                        <li>MT5 Expert Advisor (EA) Development: Experienced in creating custom automated trading systems.</li>
+                        <li>E-commerce & Dropshipping: Managing and operating online retail ventures.</li>
+                    </ul>
+                </div>
+                <!-- Skill Card 2 -->
+                <div class="bg-gray-800 p-8 rounded-3xl shadow-lg border border-gray-700 hover:border-teal-500 transition-all duration-300 transform hover:scale-105 fade-in">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <span class="text-4xl text-teal-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-code"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        </span>
+                        <h3 class="text-2xl font-semibold text-white">Web Development</h3>
+                    </div>
+                    <ul class="list-disc list-inside space-y-2 text-gray-300">
+                        <li>Web Coding: I build websites for personal projects and am open to freelance work.</li>
+                        <li>Problem-Solving: Creating practical web-based solutions, such as my personal finance tracker.</li>
+                    </ul>
+                </div>
+                <!-- Skill Card 3 -->
+                <div class="bg-gray-800 p-8 rounded-3xl shadow-lg border border-gray-700 hover:border-teal-500 transition-all duration-300 transform hover:scale-105 fade-in">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <span class="text-4xl text-teal-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        </span>
+                        <h3 class="text-2xl font-semibold text-white">Personal Interests</h3>
+                    </div>
+                    <ul class="list-disc list-inside space-y-2 text-gray-300">
+                        <li>Chess: A strategic thinker with a passion for the game.</li>
+                        <li>Piano Playing: A creative outlet that balances my analytical side.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 md:py-32">
+            <h2 class="text-4xl font-bold text-white text-center mb-12 fade-in">My Work</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Project Card 1: Noldy22 -->
+                <div class="bg-gray-800 p-8 rounded-3xl shadow-lg border border-gray-700 hover:border-teal-500 transition-all duration-300 fade-in">
+                    <!-- Placeholder image for Noldy22 -->
+                    <img src="noldy22.png" alt="Noldy22 Screenshot" class="w-full h-48 object-cover rounded-xl mb-4">
+                    <h3 class="text-3xl font-semibold text-white mb-4">Noldy22</h3>
+                    <p class="text-lg text-gray-300 mb-6">
+                        My main brand dedicated to <b>forex trading education</b> and the development and sale of custom <b>MT5 Expert Advisors</b>. This platform is where I share my expertise and provide tools to other traders.
+                    </p>
+                    <a href="https://noldy22.com/" class="inline-block bg-gray-700 hover:bg-teal-500 text-white font-bold py-2 px-6 rounded-full transition-colors duration-300">
+                        Visit
+                    </a>
+                </div>
+                <!-- Project Card 2: NolMart -->
+                <div class="bg-gray-800 p-8 rounded-3xl shadow-lg border border-gray-700 hover:border-teal-500 transition-all duration-300 fade-in">
+                    <!-- Placeholder image for NolMart -->
+                    <img src="NolMart.png" alt="NolMart Screenshot" class="w-full h-48 object-cover rounded-xl mb-4">
+                    <h3 class="text-3xl font-semibold text-white mb-4">NolMart</h3>
+                    <p class="text-lg text-gray-300 mb-6">
+                        A sub-brand focused on <b>dropshipping</b>, giving me hands-on experience in the e-commerce sector and digital logistics.
+                    </p>
+                    <a href="https://nolmart.noldy22.com/" class="inline-block bg-gray-700 hover:bg-teal-500 text-white font-bold py-2 px-6 rounded-full transition-colors duration-300">
+                        Visit
+                    </a>
+                </div>
+                <!-- Project Card 3: Personal Finance Tracker -->
+                <div class="bg-gray-800 p-8 rounded-3xl shadow-lg border border-gray-700 hover:border-teal-500 transition-all duration-300 col-span-1 md:col-span-2 fade-in">
+                    <img src="financial-tracker.png" alt="Personal Finance Tracker Screenshot" class="w-full h-48 object-cover rounded-xl mb-4">
+                    <h3 class="text-3xl font-semibold text-white mb-4">Personal Finance Tracker</h3>
+                    <p class="text-lg text-gray-300 mb-6">
+                        A personal web coding project I developed to track my income and expenditures. It serves as a practical example of my web development capabilities and my interest in creating useful, functional applications.
+                    </p>
+                    <a href="https://financial-tracker.noldy22.com/index.html" class="inline-block bg-gray-700 hover:bg-teal-500 text-white font-bold py-2 px-6 rounded-full transition-colors duration-300">
+                        Visit
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 md:py-32">
+            <div class="bg-gray-800 p-8 md:p-12 rounded-3xl shadow-xl text-center fade-in">
+                <h2 class="text-4xl font-bold text-white mb-4">Let's Work Together</h2>
+                <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+                    I am always open to new opportunities and collaborations. Whether you need a website, have a question about forex, or just want to connect, feel free to reach out.
+                </p>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-6 mb-8">
+                    <a href="mailto:minjaanold2222@gmail.com" class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105">Email Me</a>
+                    <a href="https://wa.me/255755904987" class="bg-gray-700 hover:bg-teal-500 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105">WhatsApp</a>
+                </div>
+
+                <!-- Gemini API-powered Email Draft Feature -->
+                <div class="mt-16">
+                    <h3 class="text-2xl font-bold text-white mb-4">Need help drafting your message?</h3>
+                    <div class="max-w-2xl mx-auto">
+                        <textarea id="inquiryInput" rows="4" class="w-full bg-gray-700 text-gray-200 p-4 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-teal-500 transition-colors duration-300" placeholder="Briefly describe what you're interested in (e.g., 'I need a custom website for my small business' or 'I want to learn more about your MT5 EAs')."></textarea>
+                        <button id="draftButton" class="mt-4 w-full md:w-auto bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed">
+                            <span id="buttonText">✨ Draft Email</span>
+                            <span id="loadingSpinner" class="hidden animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full"></span>
+                        </button>
+                        <textarea id="draftOutput" rows="8" class="mt-8 w-full bg-gray-700 text-gray-200 p-4 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-teal-500 transition-colors duration-300 hidden" placeholder="Your drafted email will appear here..." readonly></textarea>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-8 text-center text-gray-500">
+        <p>&copy; 2025 Anold Stephen Minja. All rights reserved.</p>
+        <div class="flex items-center justify-center mt-2">
+            <span class="text-sm text-gray-400 mr-2">Powered by</span>
+            <svg class="h-6 w-6 text-teal-500" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.5 15.5l-2.5-1.5-2.5 1.5V12h5v5.5zm-5-10.5l2.5-1.5 2.5 1.5V6h-5v1.5zM12 10.5l-2.5-1.5-2.5 1.5V6h5v4.5zM7.5 15.5L5 17.5V12h5v5.5z"/>
+            </svg>
+            <span class="text-sm text-gray-400 ml-1">Gemini API</span>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Existing Email Draft Functionality ---
+            const draftButton = document.getElementById('draftButton');
+            const inquiryInput = document.getElementById('inquiryInput');
+            const draftOutput = document.getElementById('draftOutput');
+            const buttonText = document.getElementById('buttonText');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+
+            // Custom modal for alerts
+            const createModal = (message) => {
+                const modal = document.createElement('div');
+                modal.classList.add('fixed', 'inset-0', 'flex', 'items-center', 'justify-center', 'bg-gray-900', 'bg-opacity-75', 'z-50');
+                modal.innerHTML = `
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-xl text-center max-w-sm w-full mx-4">
+                        <p class="text-lg text-white mb-4">${message}</p>
+                        <button id="closeModal" class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-6 rounded-full transition-colors duration-300">
+                            OK
+                        </button>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+                document.getElementById('closeModal').addEventListener('click', () => {
+                    modal.remove();
+                });
+            };
+
+
+            draftButton.addEventListener('click', async () => {
+                const userInquiry = inquiryInput.value.trim();
+                if (userInquiry === '') {
+                    // Replaced alert() with a custom modal
+                    createModal('Please describe your inquiry first.');
+                    return;
+                }
+
+                // Show loading state
+                draftButton.disabled = true;
+                buttonText.classList.add('hidden');
+                loadingSpinner.classList.remove('hidden');
+                draftOutput.classList.add('hidden');
+
+                try {
+                    // The prompt for the Gemini API
+                    const prompt = `Draft a professional and friendly email for a potential client to send to Anold Stephen Minja. Anold is a web developer and forex expert. The client is interested in the following: "${userInquiry}".
+
+                    The email should be respectful, get straight to the point, and have a clear call to action. Do not include a subject line. Do not include placeholders like "[Your Name]".`;
+
+                    // The payload for the API call
+                    const payload = {
+                        contents: [{
+                            role: "user",
+                            parts: [{ text: prompt }]
+                        }],
+                    };
+
+                    // IMPORTANT: Replace the empty string below with your own Gemini API key.
+                    // This is required because the key is not automatically provided when hosting locally.
+                    const apiKey = "AIzaSyAD4jxW-DOmym0y146wkHFGx3WXa40J0wc";
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+                    let response = null;
+                    let retries = 0;
+                    const maxRetries = 5;
+                    const initialDelay = 1000;
+
+                    while (retries < maxRetries) {
+                        try {
+                            response = await fetch(apiUrl, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify(payload)
+                            });
+
+                            if (response.ok) {
+                                break; // Success! Exit the retry loop.
+                            } else if (response.status === 429) {
+                                // Too many requests, implement exponential backoff
+                                const delay = initialDelay * Math.pow(2, retries);
+                                await new Promise(resolve => setTimeout(resolve, delay));
+                                retries++;
+                            } else {
+                                throw new Error(`API returned an error: ${response.status}`);
+                            }
+                        } catch (error) {
+                            console.error('Fetch failed:', error);
+                            throw error;
+                        }
+                    }
+
+                    if (!response || !response.ok) {
+                        throw new Error('Failed to fetch from API after multiple retries.');
+                    }
+
+                    const result = await response.json();
+                    const text = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+
+                    if (text) {
+                        draftOutput.value = text.trim();
+                        draftOutput.classList.remove('hidden');
+                    } else {
+                        throw new Error('No text was returned from the API.');
+                    }
+
+                } catch (error) {
+                    console.error('Error generating email draft:', error);
+                    createModal('Oops! Something went wrong. Please try again.');
+                } finally {
+                    // Hide loading state
+                    draftButton.disabled = false;
+                    buttonText.classList.remove('hidden');
+                    loadingSpinner.classList.add('hidden');
+                }
+            });
+
+
+            // --- New Highlight Navigation Functionality ---
+            // Updated to only select links with the 'nav-link' class, excluding the logo
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('main section');
+
+            // Function to remove the active class from all links
+            const removeActiveClasses = () => {
+                navLinks.forEach(link => {
+                    link.classList.remove('active-link');
+                });
+            };
+
+            // Intersection Observer for highlighting the navigation link
+            const navObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Remove active class from all links first
+                        removeActiveClasses();
+                        // Find the corresponding navigation link with the 'nav-link' class and add the active class
+                        const targetId = entry.target.getAttribute('id');
+                        const activeLink = document.querySelector(`a.nav-link[href="#${targetId}"]`);
+                        if (activeLink) {
+                            activeLink.classList.add('active-link');
+                        }
+                    }
+                });
+            }, {
+                // The root is the viewport by default.
+                // We use a margin to trigger the observer slightly before the section reaches the top.
+                rootMargin: '-50% 0px -50% 0px',
+                // Threshold of 0 means the callback is fired as soon as a single pixel of the target comes into view.
+                threshold: 0
+            });
+
+            // Start observing each section
+            sections.forEach(section => {
+                navObserver.observe(section);
+            });
+            
+            // --- Existing Scroll-based Animations ---
+            const animationObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    } else {
+                        entry.target.classList.remove('is-visible');
+                    }
+                });
+            }, {
+                rootMargin: '0px',
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('.fade-in').forEach(element => {
+                animationObserver.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
