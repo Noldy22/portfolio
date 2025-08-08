@@ -272,7 +272,7 @@
                     };
                     // IMPORTANT: Replace the empty string below with your own Gemini API key.
                     // This is required because the key is not automatically provided when hosting locally.
-                    const apiKey = "%%GEMINI_API_KEY%%";
+                    const apiKey = window.env.GEMINI_API_KEY;
                     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
 
                     let response = null;
