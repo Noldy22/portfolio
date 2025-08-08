@@ -196,12 +196,6 @@
     </footer>
 
     <script>
-      window.env = {
-        GEMINI_API_KEY: "%%GEMINI_API_KEY%%"
-      };
-    </script>
-
-    <script>
         document.addEventListener('DOMContentLoaded', () => {
             // --- Existing Email Draft Functionality ---
             const draftButton = document.getElementById('draftButton');
@@ -232,7 +226,6 @@
             draftButton.addEventListener('click', async () => {
                 const userInquiry = inquiryInput.value.trim();
                 if (userInquiry === '') {
-                    // Replaced alert() with a custom modal
                     createModal('Please describe your inquiry first.');
                     return;
                 }
@@ -244,58 +237,19 @@
                 draftOutput.classList.add('hidden');
 
                 try {
-                    // The prompt for the Gemini API
-                    const prompt = `Draft a professional and friendly email for a potential client to send to Anold Stephen Minja. Anold is a web developer and forex expert. The client is interested in the following: "${userInquiry}".
+                    // Send the inquiry to your new serverless function
+                    const response = await fetch('/api/draft', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ userInquiry })
+                    });
 
-                    The email should be respectful, get straight to the point, and have a clear call to action. Do not include a subject line. Do not include placeholders like "[Your Name]".`;
-
-                    // The payload for the API call
-                    const payload = {
-                        contents: [{
-                            role: "user",
-                            parts: [{ text: prompt }]
-                        }],
-                    };
-                    
-                    // This is the updated line that gets the API key from the environment variable.
-                    const apiKey = window.env.GEMINI_API_KEY;
-                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
-
-                    let response = null;
-                    let retries = 0;
-                    const maxRetries = 5;
-                    const initialDelay = 1000;
-
-                    while (retries < maxRetries) {
-                        try {
-                            response = await fetch(apiUrl, {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify(payload)
-                            });
-
-                            if (response.ok) {
-                                break; // Success! Exit the retry loop.
-                            } else if (response.status === 429) {
-                                // Too many requests, implement exponential backoff
-                                const delay = initialDelay * Math.pow(2, retries);
-                                await new Promise(resolve => setTimeout(resolve, delay));
-                                retries++;
-                            } else {
-                                throw new Error(`API returned an error: ${response.status}`);
-                            }
-                        } catch (error) {
-                            console.error('Fetch failed:', error);
-                            throw error;
-                        }
-                    }
-
-                    if (!response || !response.ok) {
-                        throw new Error('Failed to fetch from API after multiple retries.');
+                    if (!response.ok) {
+                        throw new Error('Failed to generate draft.');
                     }
 
                     const result = await response.json();
-                    const text = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+                    const text = result.text;
 
                     if (text) {
                         draftOutput.value = text.trim();
@@ -355,7 +309,7 @@
                 navObserver.observe(section);
             });
             
-            // --- Existing Scroll-based Animations ----
+            // --- Existing Scroll-based Animations ---
             const animationObserver = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
