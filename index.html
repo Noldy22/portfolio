@@ -3,7 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anold Stephen Minja | Portfolio</title>
+    <title>Anold Stephen Minja | Noldy22 - Pharmacy Student & Forex Trader</title>
+
+    <meta name="description" content="Anold Stephen Minja is a pharmacy student, web developer, and forex trader from Dar es Salaam, Tanzania. Specializing in MT5 Expert Advisors, web coding, and e-commerce.">
+    <meta name="keywords" content="Anold Stephen Minja, Noldy22, pharmacy student, forex trader, web developer, MT5 Expert Advisor, EA developer, Tanzania, Dar es Salaam, web coding, dropshipping, NolMart">
+
+    <meta property="og:title" content="Anold Stephen Minja | Noldy22">
+    <meta property="og:description" content="Anold Stephen Minja is a pharmacy student, web developer, and forex trader from Dar es Salaam, Tanzania. Specializing in MT5 Expert Advisors, web coding, and e-commerce.">
+    <meta property="og:image" content="https://your-site-url.com/me.jpg"> <meta property="og:url" content="https://your-site-url.com"> <meta property="og:type" content="website">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Anold Stephen Minja",
+      "jobTitle": ["Pharmacy Student", "Forex Trader", "Web Developer"],
+      "url": "https://your-site-url.com",
+      "sameAs": [
+        "https://noldy22.com",
+        "https://nolmart.noldy22.com"
+      ],
+      "image": "https://your-site-url.com/me.jpg",
+      "description": "Anold Stephen Minja is a dedicated pharmacy student and ambitious entrepreneur specializing in forex trading, web development, and e-commerce.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Dar es Salaam",
+        "addressCountry": "Tanzania"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Noldy22",
+      "url": "https://your-site-url.com"
+    }
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -178,6 +215,10 @@
                             <span id="loadingSpinner" class="hidden animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full"></span>
                         </button>
                         <textarea id="draftOutput" rows="8" class="mt-8 w-full bg-gray-700 text-gray-200 p-4 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-teal-500 transition-colors duration-300 hidden" placeholder="Your drafted email will appear here..." readonly></textarea>
+                        
+                        <button id="sendEmailButton" class="mt-4 w-full md:w-auto bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 hidden">
+                            Send Email
+                        </button>
                     </div>
                 </div>
             </div>
@@ -197,14 +238,13 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Existing Email Draft Functionality ---
             const draftButton = document.getElementById('draftButton');
+            const sendEmailButton = document.getElementById('sendEmailButton');
             const inquiryInput = document.getElementById('inquiryInput');
             const draftOutput = document.getElementById('draftOutput');
             const buttonText = document.getElementById('buttonText');
             const loadingSpinner = document.getElementById('loadingSpinner');
 
-            // Custom modal for alerts
             const createModal = (message) => {
                 const modal = document.createElement('div');
                 modal.classList.add('fixed', 'inset-0', 'flex', 'items-center', 'justify-center', 'bg-gray-900', 'bg-opacity-75', 'z-50');
@@ -222,7 +262,6 @@
                 });
             };
 
-
             draftButton.addEventListener('click', async () => {
                 const userInquiry = inquiryInput.value.trim();
                 if (userInquiry === '') {
@@ -230,14 +269,14 @@
                     return;
                 }
 
-                // Show loading state
+                // Show loading state and hide buttons/output
                 draftButton.disabled = true;
                 buttonText.classList.add('hidden');
                 loadingSpinner.classList.remove('hidden');
                 draftOutput.classList.add('hidden');
+                sendEmailButton.classList.add('hidden');
 
                 try {
-                    // Send the inquiry to your new serverless function
                     const response = await fetch('/api/draft', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
@@ -254,6 +293,7 @@
                     if (text) {
                         draftOutput.value = text.trim();
                         draftOutput.classList.remove('hidden');
+                        sendEmailButton.classList.remove('hidden'); // Show send button on success
                     } else {
                         throw new Error('No text was returned from the API.');
                     }
@@ -262,33 +302,39 @@
                     console.error('Error generating email draft:', error);
                     createModal('Oops! Something went wrong. Please try again.');
                 } finally {
-                    // Hide loading state
                     draftButton.disabled = false;
                     buttonText.classList.remove('hidden');
                     loadingSpinner.classList.add('hidden');
                 }
             });
 
+            sendEmailButton.addEventListener('click', () => {
+                const recipient = 'minjaanold2222@gmail.com';
+                const subject = encodeURIComponent('Inquiry from Your Website');
+                const body = encodeURIComponent(draftOutput.value);
 
-            // --- New Highlight Navigation Functionality ---
-            // Updated to only select links with the 'nav-link' class, excluding the logo
+                // Create and click a temporary link to open the email client
+                const mailtoLink = document.createElement('a');
+                mailtoLink.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+                document.body.appendChild(mailtoLink);
+                mailtoLink.click();
+                document.body.removeChild(mailtoLink);
+            });
+
+            // --- Navigation and Animation code (unchanged) ---
             const navLinks = document.querySelectorAll('.nav-link');
             const sections = document.querySelectorAll('main section');
 
-            // Function to remove the active class from all links
             const removeActiveClasses = () => {
                 navLinks.forEach(link => {
                     link.classList.remove('active-link');
                 });
             };
 
-            // Intersection Observer for highlighting the navigation link
             const navObserver = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        // Remove active class from all links first
                         removeActiveClasses();
-                        // Find the corresponding navigation link with the 'nav-link' class and add the active class
                         const targetId = entry.target.getAttribute('id');
                         const activeLink = document.querySelector(`a.nav-link[href="#${targetId}"]`);
                         if (activeLink) {
@@ -297,19 +343,14 @@
                     }
                 });
             }, {
-                // The root is the viewport by default.
-                // We use a margin to trigger the observer slightly before the section reaches the top.
                 rootMargin: '-50% 0px -50% 0px',
-                // Threshold of 0 means the callback is fired as soon as a single pixel of the target comes into view.
                 threshold: 0
             });
 
-            // Start observing each section
             sections.forEach(section => {
                 navObserver.observe(section);
             });
             
-            // --- Existing Scroll-based Animations ---
             const animationObserver = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
